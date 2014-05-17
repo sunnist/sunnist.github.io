@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+> 友尽，不穿黑丝低胸和热裤关系永远没改进----没错，产品汪与程序猿的友谊就是这么脆弱_(:з」∠)
+
+## <font color="1abc9c">场景描述</font>
+
+之前[嘴角商店](http://zuijiao.net/shop)在买一种神奇的保护肠道健康的物质--益生元，为了配合市场部营销赚点用户量，做了一期抽奖活动，上线后效果还不错。
+
+抽奖活动涉及的东西还是比较复杂的，这里做一下总结，方便以后重复使用。
+
+##<font color="1abc9c">常见的抽奖类型</font>
+这里收集了一些常见抽奖活动的demo可以直接拿来用的（感谢各位奉献的大牛们）
+
++ [老虎机](http://gallery.kissyui.com/slot/1.0/guide/index.html)：
+适用于web & 移动端；操作简单。
+
++ [刮刮卡]( http://wscratchpad.websanova.com/)：
+两端通用，更适用于移动端；操作稍微复杂，需要不断滑动鼠标或手指。
+
++ [摇一摇](http://dtop.powereasy.net/Item/3621.aspx)：
+只用于移动端（事先会媒体查询的 ；操作简单。
+
++ [大转盘](http://runjs.cn/detail/u4cvjeg3)：
+适用于web & 移动端；操作简单。
+
+选择抽奖类型的时候需要考虑一下web、移动端是否需要保持活动的一致性，如果web上是大转盘，移动端是摇一摇，可能会给市场部宣传的时候带来额外的解释成本；另外设计师的工作量也会加大。所以根据实际情况，来选择吧。
+
+做这次活动的之前，淘宝38生活节啥的公司某程序猿孜孜不倦的刮奖给大家印象深刻，所以毫不犹豫的选择了刮刮乐，于是开发的日常和测试充满了欢乐。。。
+
+##<font color="1abc9c">抽奖活动基本要素</font>
+
+<b><font color="1abc9c">1、活动有效期</font></b>
+
+-  某天到某天：例如 2014年5月1号至5月20号
+
+- 礼物送完即止：例如 1000份试用装，送完即止
+ 
+一般情况下的活动两种有效期是混合使用的，限定一个时间，在这个时间内如果奖品派送完话，那么后来的人就会得到提示已经没有奖品了；过期之后直接去掉活动的入口。
+
+如果有虚拟奖品，如现金券，需要额外说明此虚拟奖品的有效期，一般这个有效期和活动有效期是不一样的。
+
+<b><font color="1abc9c">2、活动的受众</font></b>
+
+- 所有用户：包含新注册和老用户
+
+- 老用户：x年x月x日之前注册的用户
+
+- 新用户：x年x月x日之后注册的用户
+
+- 特殊用户：如消费满xxx元的、用手机端的、xxx级别会员
+
+活动的受众取决于营销目的，根据实际情况来。
+
+<b><font color="1abc9c">3、参加活动次数限制</font></b>
+
+- 一个用户只能参加一次
+
+- 一个用户一天能参加xx次
+
+以此类推还有很多种次数上的限制，这些也还是取决于实际情况，选择合适的限制方式。
+
+<b> <font color="1abc9c">4、奖品的有效性</font> </b>
+
+- <b>实物礼物:</b>
+
+ * 不兑换就过期（已提交订单为主，提交才算领取）
+
+ * 抽到就是属于自己的，可以任意时间兑换
+
+- <b>虚拟礼物：</b>
+ 
+ * 有效期过后就不能使用（如现金券）
+
+ * 指定范围内才能使用（如只有某品牌才能用）
+
+##<font color="1abc9c">抽奖活动文案</font>
+
+- 突出丰厚的礼品：如三十万大奖、1个亿豪礼
+
+- 突出中奖概率：如百分百中奖、中奖率99%
+
+- 无下限，吸引眼球：取决于这次活动目的，不能盲目
+
+- 结合当下最流行的东西：如xxx你造到么
+
+活动的文案其实主要由市场部给出，这里我只是给出自己的一点想法。
+
+
+##<font color="1abc9c">刮刮卡抽奖交互</font>
+
+上面是一些抽奖活动通用的部分，涉及具体如刮刮卡抽奖效果，这里有些需要注意的地方：
+
+- <b>卡刮完提示信息</b>
+
+ * <b>提示中奖信息</b>
+
+     1）<font color="cc0000">推荐使用：</font>刮卡底纹为中奖状态图案，通过弹窗说明中奖信息
+
+     2）刮卡底纹即为奖品图案
+ 
+     第二种方案存在一个问题，图片何时向服务器请求（具体啥原因忘了，反正不推荐）
+
+ * <b>提示尚未登录or注册：</b>建议登录后才能抽奖，这样会减少不必要的用户权限检查、逻辑也会更清楚
+
+ * <b>提示不能抽奖：</b>如奖品已经派送完了、超过刮奖次数
+
+- <b>刮卡区域的百分比设置</b>
+
+ 例如刮到70%左右，给出弹窗提示信息；这个值可以随时设定；如果想体验刮卡的快感可以设定100% 
+ 
+ 这么做主要是配合上面提示中奖信息，如果设置100%刮完的话，那么在用户都看到中奖了还要继续刮继续刮，没啥意义；另外现实生活中，往往没刮完就知道是否中奖然后就不刮了。
+
+- <b>安卓机器的兼容性</b>
+
+ 刮卡的js在web高级浏览器和ios上表现比较出色，但是安卓大杂烩状态百出，程序猿需要注意各种兼容，保证常见机型表现可以接受；老机器什么的就不用纠结。
+
+推荐淘宝某大神写的文章给程序猿参考 [《在画布上刮一刮——无线刮刮卡技术分享》](http://blog.sina.com.cn/s/blog_624af76d0101rl6a.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<blockquote>
+  <p>友尽，不穿黑丝低胸和热裤关系永远没改进----没错，产品汪与程序猿的友谊就是这么脆弱_(:з」∠)</p>
+</blockquote>
+
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">场景描述</font></h2>
+
+<p>之前<a href="http://zuijiao.net/shop">嘴角商店</a>在买一种神奇的保护肠道健康的物质--益生元，为了配合市场部营销赚点用户量，做了一期抽奖活动，上线后效果还不错。</p>
+
+<p>抽奖活动涉及的东西还是比较复杂的，这里做一下总结，方便以后重复使用。</p>
+
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">常见的抽奖类型</font></h2>
+
+<p>这里收集了一些常见抽奖活动的demo可以直接拿来用的（感谢各位奉献的大牛们）</p>
+
+<ul>
+<li><p><a href="http://gallery.kissyui.com/slot/1.0/guide/index.html">老虎机</a>：
+适用于web &amp; 移动端；操作简单。</p></li>
+<li><p><a href="http://wscratchpad.websanova.com/">刮刮卡</a>：
+两端通用，更适用于移动端；操作稍微复杂，需要不断滑动鼠标或手指。</p></li>
+<li><p><a href="http://dtop.powereasy.net/Item/3621.aspx">摇一摇</a>：
+只用于移动端（事先会媒体查询的 ；操作简单。</p></li>
+<li><p><a href="http://runjs.cn/detail/u4cvjeg3">大转盘</a>：
+适用于web &amp; 移动端；操作简单。</p></li>
+</ul>
+
+<p>选择抽奖类型的时候需要考虑一下web、移动端是否需要保持活动的一致性，如果web上是大转盘，移动端是摇一摇，可能会给市场部宣传的时候带来额外的解释成本；另外设计师的工作量也会加大。所以根据实际情况，来选择吧。</p>
+
+<p>做这次活动的之前，淘宝38生活节啥的公司某程序猿孜孜不倦的刮奖给大家印象深刻，所以毫不犹豫的选择了刮刮乐，于是开发的日常和测试充满了欢乐。。。</p>
+
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">抽奖活动基本要素</font></h2>
+
+<p><b><font color="1abc9c">1、活动有效期</font></b></p>
+
+<ul>
+<li><p>某天到某天：例如 2014年5月1号至5月20号</p></li>
+<li><p>礼物送完即止：例如 1000份试用装，送完即止</p></li>
+</ul>
+
+<p>一般情况下的活动两种有效期是混合使用的，限定一个时间，在这个时间内如果奖品派送完话，那么后来的人就会得到提示已经没有奖品了；过期之后直接去掉活动的入口。</p>
+
+<p>如果有虚拟奖品，如现金券，需要额外说明此虚拟奖品的有效期，一般这个有效期和活动有效期是不一样的。</p>
+
+<p><b><font color="1abc9c">2、活动的受众</font></b></p>
+
+<ul>
+<li><p>所有用户：包含新注册和老用户</p></li>
+<li><p>老用户：x年x月x日之前注册的用户</p></li>
+<li><p>新用户：x年x月x日之后注册的用户</p></li>
+<li><p>特殊用户：如消费满xxx元的、用手机端的、xxx级别会员</p></li>
+</ul>
+
+<p>活动的受众取决于营销目的，根据实际情况来。</p>
+
+<p><b><font color="1abc9c">3、参加活动次数限制</font></b></p>
+
+<ul>
+<li><p>一个用户只能参加一次</p></li>
+<li><p>一个用户一天能参加xx次</p></li>
+</ul>
+
+<p>以此类推还有很多种次数上的限制，这些也还是取决于实际情况，选择合适的限制方式。</p>
+
+<p><b> <font color="1abc9c">4、奖品的有效性</font> </b></p>
+
+<ul>
+<li><p><b>实物礼物:</b></p>
+
+<ul><li><p>不兑换就过期（已提交订单为主，提交才算领取）</p></li>
+<li><p>抽到就是属于自己的，可以任意时间兑换</p></li></ul></li>
+<li><p><b>虚拟礼物：</b></p>
+
+<ul><li><p>有效期过后就不能使用（如现金券）</p></li>
+<li><p>指定范围内才能使用（如只有某品牌才能用）</p></li></ul></li>
+</ul>
+
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">抽奖活动文案</font></h2>
+
+<ul>
+<li><p>突出丰厚的礼品：如三十万大奖、1个亿豪礼</p></li>
+<li><p>突出中奖概率：如百分百中奖、中奖率99%</p></li>
+<li><p>无下限，吸引眼球：取决于这次活动目的，不能盲目</p></li>
+<li><p>结合当下最流行的东西：如xxx你造到么</p></li>
+</ul>
+
+<p>活动的文案其实主要由市场部给出，这里我只是给出自己的一点想法。</p>
+
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">刮刮卡抽奖交互</font></h2>
+
+<p>上面是一些抽奖活动通用的部分，涉及具体如刮刮卡抽奖效果，这里有些需要注意的地方：</p>
+
+<ul>
+<li><p><b>卡刮完提示信息</b></p>
+
+<ul><li><p><b>提示中奖信息</b></p>
+
+<p>1）<font color="cc0000">推荐使用：</font>刮卡底纹为中奖状态图案，通过弹窗说明中奖信息</p>
+
+<p>2）刮卡底纹即为奖品图案</p>
+
+<p>第二种方案存在一个问题，图片何时向服务器请求（具体啥原因忘了，反正不推荐）</p></li>
+<li><p><b>提示尚未登录or注册：</b>建议登录后才能抽奖，这样会减少不必要的用户权限检查、逻辑也会更清楚</p></li>
+<li><p><b>提示不能抽奖：</b>如奖品已经派送完了、超过刮奖次数</p></li></ul></li>
+<li><p><b>刮卡区域的百分比设置</b></p>
+
+<p>例如刮到70%左右，给出弹窗提示信息；这个值可以随时设定；如果想体验刮卡的快感可以设定100% </p>
+
+<p>这么做主要是配合上面提示中奖信息，如果设置100%刮完的话，那么在用户都看到中奖了还要继续刮继续刮，没啥意义；另外现实生活中，往往没刮完就知道是否中奖然后就不刮了。</p></li>
+<li><p><b>安卓机器的兼容性</b></p>
+
+<p>刮卡的js在web高级浏览器和ios上表现比较出色，但是安卓大杂烩状态百出，程序猿需要注意各种兼容，保证常见机型表现可以接受；老机器什么的就不用纠结。</p></li>
+</ul>
+
+<p>推荐淘宝某大神写的文章给程序猿参考 <a href="http://blog.sina.com.cn/s/blog_624af76d0101rl6a.html">《在画布上刮一刮——无线刮刮卡技术分享》</a></p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "gift.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -25,17 +25,13 @@
 	</div>
 <div id="md" style="display: none;">
 <!-- markdown -->
-### 场景
+## <font color="1abc9c">场景描述</font>
 
-虽然是产品汪，但是负责了大部分基于微信内的 web app 视觉设计 （微信服务号：嘴角 zuijiaolife ）；最近上线时发现给出的图片模糊实在是不能忍，于是决定找原因找解决方法
-
- ![](http://zuijiao.net/Public/img/assets/code/fuwu60.png)
-
-扫一扫 二维码 
+虽然是产品汪，但是负责了大部分基于微信内的 web app 视觉设计 （微信服务号：嘴角 zuijiaolife ）；最近上线时发现给出的图片模糊实在是不能忍，于是决定找原因找解决方法。
 
 这里主要参考引用了白树大神的文章：[《高清显示屏原理及设计方案》](http://www.cnblogs.com/PeunZhang/p/3441110.html) ，程序猿同学可以直接参考，里面还有兼容性很好的解决方案
 
-### 为什么图片会模糊
+## <font color="1abc9c">为什么图片会模糊</font>
 
 不是图片有问题，而是移动设备在变化；为了更好的在小屏幕下塞进更多的信息例如图片，智能移动设备的分辨率历来不低，这些年各种高分辨率屏幕更是成为了手机、平板的标配。
 
@@ -51,8 +47,7 @@
 [《一切为了程序猿！详析手机端的8PX原理》](http://www.uisdc.com/akanelee-android-about-8px)
 
 
-### 关键词解释
-
+## <font color="1abc9c">关键词说明</font>
 知道了为什么图片会糊，介绍几个关键词，便于理解之后的解决方案
 
 + <b> 高清显示屏 </b>
@@ -73,7 +68,7 @@
 
 	就我这种菜鸟来看，这两个其实都是图片，只不过css background-image可以用作于背景，介绍这两个牵扯到代码中图片该用什么写的问题，这里参考万能的stackoverflow: [When to use IMG vs. CSS background-image?](http://stackoverflow.com/questions/492809/when-to-use-img-vs-css-background-image)
 
-#### 解决方案
+## <font color="1abc9c">解决方案</font>
 
 我遇到的问题其实无解 _ (:з」∠)_ ，因为现在代码里图片都是 < img >，现有的解决方案都是基于 background-image 的；如果要将现有的图片代码都替换掉的话，这里牵扯到需要固定整个 web app 的尺寸（特别是宽度），还有代码的重构，坑非常大。
 
@@ -100,17 +95,13 @@
 </div>
 <div class="entry" id="main">
 <!-- content -->
-<h3 id="">场景</h3>
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">场景描述</font></h2>
 
-<p>虽然是产品汪，但是负责了大部分基于微信内的 web app 视觉设计 （微信服务号：嘴角 zuijiaolife ）；最近上线时发现给出的图片模糊实在是不能忍，于是决定找原因找解决方法</p>
-
-<p><img src="http://zuijiao.net/Public/img/assets/code/fuwu60.png" alt="" title=""></p>
-
-<p>扫一扫 二维码 </p>
+<p>虽然是产品汪，但是负责了大部分基于微信内的 web app 视觉设计 （微信服务号：嘴角 zuijiaolife ）；最近上线时发现给出的图片模糊实在是不能忍，于是决定找原因找解决方法。</p>
 
 <p>这里主要参考引用了白树大神的文章：<a href="http://www.cnblogs.com/PeunZhang/p/3441110.html">《高清显示屏原理及设计方案》</a> ，程序猿同学可以直接参考，里面还有兼容性很好的解决方案</p>
 
-<h3 id="">为什么图片会模糊</h3>
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">为什么图片会模糊</font></h2>
 
 <p>不是图片有问题，而是移动设备在变化；为了更好的在小屏幕下塞进更多的信息例如图片，智能移动设备的分辨率历来不低，这些年各种高分辨率屏幕更是成为了手机、平板的标配。</p>
 
@@ -125,7 +116,7 @@
 
 <p><a href="http://www.uisdc.com/akanelee-android-about-8px">《一切为了程序猿！详析手机端的8PX原理》</a></p>
 
-<h3 id="">关键词解释</h3>
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">关键词说明</font></h2>
 
 <p>知道了为什么图片会糊，介绍几个关键词，便于理解之后的解决方案</p>
 
@@ -150,7 +141,7 @@ retina只是高清显示屏的一种，现在主流旗舰机型都是高清显�
 <p>就我这种菜鸟来看，这两个其实都是图片，只不过css background-image可以用作于背景，介绍这两个牵扯到代码中图片该用什么写的问题，这里参考万能的stackoverflow: <a href="http://stackoverflow.com/questions/492809/when-to-use-img-vs-css-background-image">When to use IMG vs. CSS background-image?</a></p></li>
 </ul>
 
-<h4 id="">解决方案</h4>
+<h2 id="fontcolor1abc9cfont"><font color="1abc9c">解决方案</font></h2>
 
 <p>我遇到的问题其实无解 _ (:з」∠)_ ，因为现在代码里图片都是 &lt; img &gt;，现有的解决方案都是基于 background-image 的；如果要将现有的图片代码都替换掉的话，这里牵扯到需要固定整个 web app 的尺寸（特别是宽度），还有代码的重构，坑非常大。</p>
 

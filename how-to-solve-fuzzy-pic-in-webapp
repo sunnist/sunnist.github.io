@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+### 场景
+
+虽然是产品汪，但是负责了大部分基于微信内的 web app 视觉设计 （微信服务号：嘴角 zuijiaolife ）；最近上线时发现给出的图片模糊实在是不能忍，于是决定找原因找解决方法
+
+ ![](http://zuijiao.net/Public/img/assets/code/fuwu60.png)
+
+扫一扫 二维码 
+
+这里主要参考引用了白树大神的文章：[《高清显示屏原理及设计方案》](http://www.cnblogs.com/PeunZhang/p/3441110.html) ，程序猿同学可以直接参考，里面还有兼容性很好的解决方案
+
+### 为什么图片会模糊
+
+不是图片有问题，而是移动设备在变化；为了更好的在小屏幕下塞进更多的信息例如图片，智能移动设备的分辨率历来不低，这些年各种高分辨率屏幕更是成为了手机、平板的标配。
+
+用苹果的retina为例，一个同样大小的屏幕上显示的像素点由1个变为4个；那么图片为什么会糊呢，看下面的图解：
+![](http://ww1.sinaimg.cn/mw690/82a9ab14gw1egrs8a7h6vj20hm0e4gmk.jpg)
+
+<b>如果保持像素不变的话，在retina屏上的图片会比普通屏幕上小，变成之前的1/4；如果需要保持图片尺寸不变的，就需要拉伸图片到原来的4倍，所以图片模糊是在所难免的。</b>
+
+这里延伸两篇文章，如果你有注意到上图的行列数
+
+[《一张图解释手机端8px原理》](http://ued.taobao.org/blog/2013/12/%E4%B8%80%E5%BC%A0%E5%9B%BE%E8%A7%A3%E9%87%8A%E6%89%8B%E6%9C%BA%E7%AB%AF8px%E5%8E%9F%E7%90%86/)
+
+[《一切为了程序猿！详析手机端的8PX原理》](http://www.uisdc.com/akanelee-android-about-8px)
+
+
+### 关键词解释
+
+知道了为什么图片会糊，介绍几个关键词，便于理解之后的解决方案
+
++ <b> 高清显示屏 </b>
+
+	具有这两点特征的都是高清显示屏：1、具备超高像素密度的液晶屏 2、同样大小的屏幕上显示的像素点由1个变为多个，
+	retina只是高清显示屏的一种，现在主流旗舰机型都是高清显示屏。
+	
++ <b> device Pixel Ratio</b> （引用于白树博客）
+	> 它是设备上物理像素和设备独立像素( device-independent pixels (dips) )的比例，即 devicePixelRatio = 屏幕物理像素/设备独立像素；
+	
+	> 例如iPhone4S，分辨率为：960×640，取屏幕宽度计算，物理像素640px，设备独立像素320px，那么，devicePixelRatio 值为 640px /  320px = 2，又如iPhone3，计算出来的 devicePixelRatio 值为 320px / 320px = 1
+ 
+	> 那么，通过计算 devicePixelRatio 的值，是可以区分普通显示屏和高清显示器，当devicePixelRatio值等于1时（也就是最小值），那么它普通显示屏，当devicePixelRatio值大于1(通常是1.5、2.0)，那么它就是高清显示屏
+	
+	更多的可以参考张鑫旭大神的文章：[《设备像素比devicePixelRatio简单介绍》](http://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/)
+	
++ <b> img & css background-image </b>
+
+	就我这种菜鸟来看，这两个其实都是图片，只不过css background-image可以用作于背景，介绍这两个牵扯到代码中图片该用什么写的问题，这里参考万能的stackoverflow: [When to use IMG vs. CSS background-image?](http://stackoverflow.com/questions/492809/when-to-use-img-vs-css-background-image)
+
+#### 解决方案
+
+我遇到的问题其实无解 _ (:з」∠)_ ，因为现在代码里图片都是 < img >，现有的解决方案都是基于 background-image 的；如果要将现有的图片代码都替换掉的话，这里牵扯到需要固定整个 web app 的尺寸（特别是宽度），还有代码的重构，坑非常大。
+
+正常的解决方案，引用白树博客
+
+> 通过判断 devicePixelRatio 的值来加载不同尺寸的图片
+
+> 针对普通显示屏(devicePixelRatio = 1.0、1.3)，加载一张1倍的图片
+  
+> 针对高清显示屏(devicePixelRatio >= 1.5、2.0、3.0)，加载一张2倍大的图片
+
+	.css{/* 普通显示屏(设备像素比例小于等于1.3)使用1倍的图 */ 
+    background-image: url(img_1x.png);
+	}
+	
+	@media only screen and (-webkit-min-device-pixel-ratio:1.5){
+	.css{/* 高清显示屏(设备像素比例大于等于1.5)使用2倍图  */
+    background-image: url(img_2x.png);
+  	}
+	}
+	
+参考白树大神写的demo [根据devicePixelRatio显示不同款乔帮主](http://jsbin.com/eQATewU/1/edit)
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h3 id="">场景</h3>
+
+<p>虽然是产品汪，但是负责了大部分基于微信内的 web app 视觉设计 （微信服务号：嘴角 zuijiaolife ）；最近上线时发现给出的图片模糊实在是不能忍，于是决定找原因找解决方法</p>
+
+<p><img src="http://zuijiao.net/Public/img/assets/code/fuwu60.png" alt="" title=""></p>
+
+<p>扫一扫 二维码 </p>
+
+<p>这里主要参考引用了白树大神的文章：<a href="http://www.cnblogs.com/PeunZhang/p/3441110.html">《高清显示屏原理及设计方案》</a> ，程序猿同学可以直接参考，里面还有兼容性很好的解决方案</p>
+
+<h3 id="">为什么图片会模糊</h3>
+
+<p>不是图片有问题，而是移动设备在变化；为了更好的在小屏幕下塞进更多的信息例如图片，智能移动设备的分辨率历来不低，这些年各种高分辨率屏幕更是成为了手机、平板的标配。</p>
+
+<p>用苹果的retina为例，一个同样大小的屏幕上显示的像素点由1个变为4个；那么图片为什么会糊呢，看下面的图解：
+<img src="http://ww1.sinaimg.cn/mw690/82a9ab14gw1egrs8a7h6vj20hm0e4gmk.jpg" alt="" title="" data-pinit="registered"></p>
+
+<p><b>如果保持像素不变的话，在retina屏上的图片会比普通屏幕上小，变成之前的1/4；如果需要保持图片尺寸不变的，就需要拉伸图片到原来的4倍，所以图片模糊是在所难免的。</b></p>
+
+<p>这里延伸两篇文章，如果你有注意到上图的行列数</p>
+
+<p><a href="http://ued.taobao.org/blog/2013/12/%E4%B8%80%E5%BC%A0%E5%9B%BE%E8%A7%A3%E9%87%8A%E6%89%8B%E6%9C%BA%E7%AB%AF8px%E5%8E%9F%E7%90%86/">《一张图解释手机端8px原理》</a></p>
+
+<p><a href="http://www.uisdc.com/akanelee-android-about-8px">《一切为了程序猿！详析手机端的8PX原理》</a></p>
+
+<h3 id="">关键词解释</h3>
+
+<p>知道了为什么图片会糊，介绍几个关键词，便于理解之后的解决方案</p>
+
+<ul>
+<li><p><b> 高清显示屏 </b></p>
+
+<p>具有这两点特征的都是高清显示屏：1、具备超高像素密度的液晶屏 2、同样大小的屏幕上显示的像素点由1个变为多个，
+retina只是高清显示屏的一种，现在主流旗舰机型都是高清显示屏。</p></li>
+<li><p><b> device Pixel Ratio</b> （引用于白树博客）</p>
+
+<blockquote>
+  <p>它是设备上物理像素和设备独立像素( device-independent pixels (dips) )的比例，即 devicePixelRatio = 屏幕物理像素/设备独立像素；</p>
+  
+  <p>例如iPhone4S，分辨率为：960×640，取屏幕宽度计算，物理像素640px，设备独立像素320px，那么，devicePixelRatio 值为 640px /  320px = 2，又如iPhone3，计算出来的 devicePixelRatio 值为 320px / 320px = 1</p>
+  
+  <p>那么，通过计算 devicePixelRatio 的值，是可以区分普通显示屏和高清显示器，当devicePixelRatio值等于1时（也就是最小值），那么它普通显示屏，当devicePixelRatio值大于1(通常是1.5、2.0)，那么它就是高清显示屏</p>
+</blockquote>
+
+<p>更多的可以参考张鑫旭大神的文章：<a href="http://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/">《设备像素比devicePixelRatio简单介绍》</a></p></li>
+<li><p><b> img &amp; css background-image </b></p>
+
+<p>就我这种菜鸟来看，这两个其实都是图片，只不过css background-image可以用作于背景，介绍这两个牵扯到代码中图片该用什么写的问题，这里参考万能的stackoverflow: <a href="http://stackoverflow.com/questions/492809/when-to-use-img-vs-css-background-image">When to use IMG vs. CSS background-image?</a></p></li>
+</ul>
+
+<h4 id="">解决方案</h4>
+
+<p>我遇到的问题其实无解 _ (:з」∠)_ ，因为现在代码里图片都是 &lt; img &gt;，现有的解决方案都是基于 background-image 的；如果要将现有的图片代码都替换掉的话，这里牵扯到需要固定整个 web app 的尺寸（特别是宽度），还有代码的重构，坑非常大。</p>
+
+<p>正常的解决方案，引用白树博客</p>
+
+<blockquote>
+  <p>通过判断 devicePixelRatio 的值来加载不同尺寸的图片</p>
+  
+  <p>针对普通显示屏(devicePixelRatio = 1.0、1.3)，加载一张1倍的图片</p>
+  
+  <p>针对高清显示屏(devicePixelRatio &gt;= 1.5、2.0、3.0)，加载一张2倍大的图片</p>
+</blockquote>
+
+<pre><code>.css{/* 普通显示屏(设备像素比例小于等于1.3)使用1倍的图 */ 
+background-image: url(img_1x.png);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5){
+.css{/* 高清显示屏(设备像素比例大于等于1.5)使用2倍图  */
+background-image: url(img_2x.png);
+  }
+}
+</code></pre>
+
+<p>参考白树大神写的demo <a href="http://jsbin.com/eQATewU/1/edit">根据devicePixelRatio显示不同款乔帮主</a></p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "how-to-solve-fuzzy-pic-in-webapp";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

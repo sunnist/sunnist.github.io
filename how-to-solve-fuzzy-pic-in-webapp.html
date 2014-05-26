@@ -70,9 +70,10 @@
 
 ## <font color="1abc9c">解决方案</font>
 
-我遇到的问题其实无解 _ (:з」∠)_ ，因为现在代码里图片都是 < img >，现有的解决方案都是基于 background-image 的；如果要将现有的图片代码都替换掉的话，这里牵扯到需要固定整个 web app 的尺寸（特别是宽度），还有代码的重构，坑非常大。
+因为现有图片都用< img >，所以可以采用 [Retina.js](http://imulus.github.io/retinajs/) ；
+原理还是查询设备替换图片。但是不太清楚这里是否牵扯到图片尺寸固定啥的，这个还需要跟程序猿沟通一下才能确认方案是否可行。
 
-正常的解决方案，引用白树博客
+普遍的解决方案用css background-image，引用白树博客
 
 > 通过判断 devicePixelRatio 的值来加载不同尺寸的图片
 
@@ -91,6 +92,27 @@
 	}
 	
 参考白树大神写的demo [根据devicePixelRatio显示不同款乔帮主](http://jsbin.com/eQATewU/1/edit)
+
+还有有小伙伴介绍 js 解决方法 [Retina.js](http://imulus.github.io/retinajs/)
+原理还是换图片，所以设计师偷不得懒（ ＴДＴ）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- markdown end -->
 </div>
 <div class="entry" id="main">
@@ -143,9 +165,10 @@ retina只是高清显示屏的一种，现在主流旗舰机型都是高清显�
 
 <h2 id="fontcolor1abc9cfont"><font color="1abc9c">解决方案</font></h2>
 
-<p>我遇到的问题其实无解 _ (:з」∠)_ ，因为现在代码里图片都是 &lt; img &gt;，现有的解决方案都是基于 background-image 的；如果要将现有的图片代码都替换掉的话，这里牵扯到需要固定整个 web app 的尺寸（特别是宽度），还有代码的重构，坑非常大。</p>
+<p>因为现有图片都用&lt; img &gt;，所以可以采用 <a href="http://imulus.github.io/retinajs/">Retina.js</a> ；
+原理还是查询设备替换图片。但是不太清楚这里是否牵扯到图片尺寸固定啥的，这个还需要跟程序猿沟通一下才能确认方案是否可行。</p>
 
-<p>正常的解决方案，引用白树博客</p>
+<p>普遍的解决方案用css background-image，引用白树博客</p>
 
 <blockquote>
   <p>通过判断 devicePixelRatio 的值来加载不同尺寸的图片</p>
@@ -167,6 +190,9 @@ background-image: url(img_2x.png);
 </code></pre>
 
 <p>参考白树大神写的demo <a href="http://jsbin.com/eQATewU/1/edit">根据devicePixelRatio显示不同款乔帮主</a></p>
+
+<p>还有有小伙伴介绍 js 解决方法 <a href="http://imulus.github.io/retinajs/">Retina.js</a>
+原理还是换图片，所以设计师偷不得懒（ ＴДＴ）</p>
 <!-- content end -->
 </div>
 <br>

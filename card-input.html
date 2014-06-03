@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##<font color= "1ABC9C">  场景描述  </font>
+
+ 公司定制了一批刮刮卡，当做商品销售；收到刮刮卡后在官网和移动端上输入16位的卡号，验证后即可兑换卡内对应的商品。
+
+16位卡号生成时去掉了0o、il等比较容易混淆的字母数字，不区分大小写，4个一组中间空格，保证卡号清晰易读。
+
+输入卡号的操作是网页端和移动端都要用的，其中移动端是 web app 的形式，不是 native app 。
+
+##<font color= "1ABC9C">  初步解决方案  </font>
+
+1、给出四个输入框，用户把四组数字输入进去
+
+<font color= "CC0000"> 问题：</font> 每个小输入框没有限制字数，意思是用户可以在第一个输入框里输入16个乃至更多的字符<font color= "868686"> （这里我没有验证在第一个输入框内直接输入16位正确卡号是否可以通过校验，这个可能要根据前端是如何拿数据来判断）。</font>
+
+2、给出四个输入框，限制每个输入框只能输入四个字符
+
+<font color= "CC0000"> 问题：</font> web app 如果采用此方案，键盘会频繁呼出切换，非常麻烦；web端还可以忍受 。
+
+这里web上有方法可以做到填完一个输入框，光标自动移到下一个输入框。所以这个方法还可以接受。不过 web app 上貌似没法实现这个效果<font color= "868686"> （据前端程序猿反馈）。</font>
+
+##<font color= "1ABC9C">  最佳解决方案  </font>
+
+一个输入框内，输入卡号自动分隔成四组<font color= "868686">（当然如果你卡号是5组6组这只是程序上的小修改而已)。</font> 因为只有一个输入框，这个可以解决web app上频繁切换键盘的问题；同时自动分隔，也是一种很好的提示，并且与卡号印刷时候的方式统一。
+
+现成的代码实现，谢谢各位大牛的奉献 》
+[single field credit card input pattern](http://bradfrostweb.com/blog/post/single-field-credit-card-input-pattern/)
+![](http://bradfrostweb.com/wp-content/uploads/2014/04/single-cc-demo.gif)
+
+另外有个小插曲，本来这种卡是要用户自己购买然后输入的，大boss自己拿了几十张卡刮开把卡号发给别人去送礼，这样的话一个输入框就更方便了。。。。直接收到粘贴复制就ok，如果分开四个输入框还要依次填，很麻烦；当然这是特殊情况，不在正常考虑范围内。
+
+最佳方案其实还没实现_(:з」∠)，因为上线后才发现有更好的解决方法，目前采用的是初步解决方案里面的第二个。
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="fontcolor1abc9cfont"><font color="1ABC9C">  场景描述  </font></h2>
+
+<p>公司定制了一批刮刮卡，当做商品销售；收到刮刮卡后在官网和移动端上输入16位的卡号，验证后即可兑换卡内对应的商品。</p>
+
+<p>16位卡号生成时去掉了0o、il等比较容易混淆的字母数字，不区分大小写，4个一组中间空格，保证卡号清晰易读。</p>
+
+<p>输入卡号的操作是网页端和移动端都要用的，其中移动端是 web app 的形式，不是 native app 。</p>
+
+<h2 id="fontcolor1abc9cfont"><font color="1ABC9C">  初步解决方案  </font></h2>
+
+<p>1、给出四个输入框，用户把四组数字输入进去</p>
+
+<p><font color="CC0000"> 问题：</font> 每个小输入框没有限制字数，意思是用户可以在第一个输入框里输入16个乃至更多的字符<font color="868686"> （这里我没有验证在第一个输入框内直接输入16位正确卡号是否可以通过校验，这个可能要根据前端是如何拿数据来判断）。</font></p>
+
+<p>2、给出四个输入框，限制每个输入框只能输入四个字符</p>
+
+<p><font color="CC0000"> 问题：</font> web app 如果采用此方案，键盘会频繁呼出切换，非常麻烦；web端还可以忍受 。</p>
+
+<p>这里web上有方法可以做到填完一个输入框，光标自动移到下一个输入框。所以这个方法还可以接受。不过 web app 上貌似没法实现这个效果<font color="868686"> （据前端程序猿反馈）。</font></p>
+
+<h2 id="fontcolor1abc9cfont"><font color="1ABC9C">  最佳解决方案  </font></h2>
+
+<p>一个输入框内，输入卡号自动分隔成四组<font color="868686">（当然如果你卡号是5组6组这只是程序上的小修改而已)。</font> 因为只有一个输入框，这个可以解决web app上频繁切换键盘的问题；同时自动分隔，也是一种很好的提示，并且与卡号印刷时候的方式统一。</p>
+
+<p>现成的代码实现，谢谢各位大牛的奉献 》
+<a href="http://bradfrostweb.com/blog/post/single-field-credit-card-input-pattern/">single field credit card input pattern</a>
+<img src="http://bradfrostweb.com/wp-content/uploads/2014/04/single-cc-demo.gif" alt="" title=""></p>
+
+<p>另外有个小插曲，本来这种卡是要用户自己购买然后输入的，大boss自己拿了几十张卡刮开把卡号发给别人去送礼，这样的话一个输入框就更方便了。。。。直接收到粘贴复制就ok，如果分开四个输入框还要依次填，很麻烦；当然这是特殊情况，不在正常考虑范围内。</p>
+
+<p>最佳方案其实还没实现_(:з」∠)，因为上线后才发现有更好的解决方法，目前采用的是初步解决方案里面的第二个。</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "card-input.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

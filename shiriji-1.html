@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+今天正好下班早，路过菜市场买了小半斤肋排，加了一个土豆炖了一锅；切了点周末煮好的牛肉，加上千张香菜生菜，煮了一点汤，配上米饭，感觉是来上海一年多吃的最好一顿晚饭。
+
+闲来无事罗列了一些觉自己还比较拿手，朋友吃了也纷纷认可的菜式，作为食物的日记，今天就暂时先列名字，作法之后再补上吧~
+
+## 主食类
+
+燕麦豆奶粥
+
+扁豆焖面
+
+葱油拌面
+
+咖喱乌冬面
+
+##  家常菜类
+
+醋拌木耳
+
+青椒斩蛋
+
+鱼香肉丝
+
+土豆泥
+
+土豆炖排骨
+
+红烧鱼块
+
+## 汤类
+
+萝卜排骨汤
+
+牛肉千张蔬菜汤
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<p>今天正好下班早，路过菜市场买了小半斤肋排，加了一个土豆炖了一锅；切了点周末煮好的牛肉，加上千张香菜生菜，煮了一点汤，配上米饭，感觉是来上海一年多吃的最好一顿晚饭。</p>
+
+<p>闲来无事罗列了一些觉自己还比较拿手，朋友吃了也纷纷认可的菜式，作为食物的日记，今天就暂时先列名字，作法之后再补上吧~</p>
+
+<h2 id="">主食类</h2>
+
+<p>燕麦豆奶粥</p>
+
+<p>扁豆焖面</p>
+
+<p>葱油拌面</p>
+
+<p>咖喱乌冬面</p>
+
+<h2 id="">家常菜类</h2>
+
+<p>醋拌木耳</p>
+
+<p>青椒斩蛋</p>
+
+<p>鱼香肉丝</p>
+
+<p>土豆泥</p>
+
+<p>土豆炖排骨</p>
+
+<p>红烧鱼块</p>
+
+<h2 id="">汤类</h2>
+
+<p>萝卜排骨汤</p>
+
+<p>牛肉千张蔬菜汤</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "shiriji-1.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

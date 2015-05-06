@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##全局修改
+字体为
+
+    font-family: "Hiragino Sans GB","冬青黑体","Microsoft YaHei","微软雅黑","Arial";
+
+普通正文大小为16px，颜色为 #212121，高亮颜色为#883a36
+
+
+##首页列表修改
+
+1、左边封面图去掉 hover 阴影
+
+2、右边料理活动的时间、价格、预订人员文字需要高亮
+
+           .home-feast-front-meta, .home-feast-front-reserTip {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #883a36;
+    } 
+<span class="loading">upload image now!</span>
+![](http://ww1.sinaimg.cn/large/82a9ab14gw1eruhub09xtj20pu091q6y.jpg)
+
+##首页展开修改
+
+料理活动的介绍文字大小为16px，间距为2px 
+
+      .home-feast-detail-host p {
+       font-size: 16px;
+       letter-spacing: 2px;
+       }
+  
+
+去掉料理人头像的阴影，减少上下 margin 值
+
+    .home-feast-detail-host .avatar {
+     width: 96px;
+     height: 96px;  
+     margin-top: 30px;
+     margin-bottom: 30px;
+     /* -webkit-box-shadow: 0 0 10px rgba(0,0,0,.5); */
+    /* box-shadow: 0 0 10px rgba(0,0,0,.1); */
+    }
+
+目前每个模块的标题是 h2，希望视觉效果是18px、加粗，至于这个h2设置为 18px 可能是不符合规范的
+    
+      h2 {
+      font-size: 18px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+     }
+
+ 减少料理人名的 margin-bottom 值
+
+     .home-feast-detail-host h2 {
+      margin-bottom: 15px;
+     font-weight: 500;
+    }
+![](http://ww4.sinaimg.cn/large/82a9ab14gw1eruhzao08pj20nc07xwf3.jpg)
+
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="">全局修改</h2>
+
+<p>字体为</p>
+
+<pre><code>font-family: "Hiragino Sans GB","冬青黑体","Microsoft YaHei","微软雅黑","Arial";
+</code></pre>
+
+<p>普通正文大小为16px，颜色为 #212121，高亮颜色为#883a36</p>
+
+<h2 id="">首页列表修改</h2>
+
+<p>1、左边封面图去掉 hover 阴影</p>
+
+<p>2、右边料理活动的时间、价格、预订人员文字需要高亮</p>
+
+<pre><code>       .home-feast-front-meta, .home-feast-front-reserTip {
+margin-bottom: 5px;
+font-size: 14px;
+color: #883a36;
+} 
+</code></pre>
+
+<p><span class="loading">upload image now!</span>
+<img src="http://ww1.sinaimg.cn/large/82a9ab14gw1eruhub09xtj20pu091q6y.jpg" alt="" title=""></p>
+
+<h2 id="">首页展开修改</h2>
+
+<p>料理活动的介绍文字大小为16px，间距为2px </p>
+
+<pre><code>  .home-feast-detail-host p {
+   font-size: 16px;
+   letter-spacing: 2px;
+   }
+</code></pre>
+
+<p>去掉料理人头像的阴影，减少上下 margin 值</p>
+
+<pre><code>.home-feast-detail-host .avatar {
+ width: 96px;
+ height: 96px;  
+ margin-top: 30px;
+ margin-bottom: 30px;
+ /* -webkit-box-shadow: 0 0 10px rgba(0,0,0,.5); */
+/* box-shadow: 0 0 10px rgba(0,0,0,.1); */
+}
+</code></pre>
+
+<p>目前每个模块的标题是 h2，希望视觉效果是18px、加粗，至于这个h2设置为 18px 可能是不符合规范的</p>
+
+<pre><code>  h2 {
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+ }
+</code></pre>
+
+<p>减少料理人名的 margin-bottom 值</p>
+
+<pre><code> .home-feast-detail-host h2 {
+  margin-bottom: 15px;
+ font-weight: 500;
+}
+</code></pre>
+
+<p><img src="http://ww4.sinaimg.cn/large/82a9ab14gw1eruhzao08pj20nc07xwf3.jpg" alt="" title=""></p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "cssissue.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

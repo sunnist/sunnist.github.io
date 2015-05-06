@@ -39,25 +39,27 @@
 
 2、右边料理活动的时间、价格、预订人员文字需要高亮
 
-           .home-feast-front-meta, .home-feast-front-reserTip {
+    .home-feast-front-meta, .home-feast-front-reserTip {
     margin-bottom: 5px;
     font-size: 14px;
     color: #883a36;
     } 
-<span class="loading">upload image now!</span>
+
 ![](http://ww1.sinaimg.cn/large/82a9ab14gw1eruhub09xtj20pu091q6y.jpg)
 
-##首页展开修改
+##首页展开详细修改
 
-料理活动的介绍文字大小为16px，间距为2px 
+1、料理活动的介绍文字大小为16px，间距为2px ，这里 width 最好设置为760px，与下面最宽的图片展示区域对齐
+
+   ![](http://sunnist.github.io/img/Snip20150506_5.png)
 
       .home-feast-detail-host p {
        font-size: 16px;
        letter-spacing: 2px;
        }
-  
 
-去掉料理人头像的阴影，减少上下 margin 值
+2、去掉料理人头像的阴影，减少上下 margin 值                                                                             
+ ![](http://sunnist.github.io/img/Snip20150506_6.png)
 
     .home-feast-detail-host .avatar {
      width: 96px;
@@ -68,7 +70,25 @@
     /* box-shadow: 0 0 10px rgba(0,0,0,.1); */
     }
 
-目前每个模块的标题是 h2，希望视觉效果是18px、加粗，至于这个h2设置为 18px 可能是不符合规范的
+3、 减少料理人名的 margin-bottom 值
+                     
+ ![](http://sunnist.github.io/img/Snip20150506_7.png)
+
+     .home-feast-detail-host h2 {
+      margin-bottom: 15px;
+     font-weight: 500;
+    }
+
+4、减少分割线的上下 margin 值
+
+ ![](http://sunnist.github.io/img/Snip20150506_8.png)
+
+    .home-feast-detail .divider {
+     margin-top: 30px;
+     margin-bottom: 30px;
+    }
+
+5、目前料理人、每个模块的标题是 h2，希望视觉效果是18px（标题加粗），至于这个h2设置为 18px 可能是不符合规范的
     
       h2 {
       font-size: 18px;
@@ -76,13 +96,90 @@
       margin-bottom: 15px;
      }
 
- 减少料理人名的 margin-bottom 值
+6、减少每块内容标题的 margin-bottom 
 
-     .home-feast-detail-host h2 {
-      margin-bottom: 15px;
-     font-weight: 500;
-    }
-![](http://ww4.sinaimg.cn/large/82a9ab14gw1eruhzao08pj20nc07xwf3.jpg)
+![](http://ww3.sinaimg.cn/large/82a9ab14gw1eruii1agkjj204t020gle.jpg)
+
+	.home-feast-detail-sub-section .home-feast-detail-sub-title {
+ 	 margin-bottom: 15px;
+  	line-height: 1.2;
+	}
+	
+7、减少每块内容主题的 margin-bottom
+
+	.home-feast-detail-sub-section {
+ 	 margin-bottom: 30px;
+	}	
+
+8、菜单字体大小为16px，这里后面的特色文字也是16px
+
+![](http://ww2.sinaimg.cn/large/82a9ab14gw1eruij4w9irj206d0ed0t4.jpg)
+
+	.home-feast-detail-menu-item {
+  	margin-bottom: 18px;
+  	font-size: 16px;
+	}
+	
+9、去掉特色图片的阴影
+
+![](http://ww2.sinaimg.cn/large/82a9ab14gw1eruim0g61lj20f80d7tc6.jpg)
+
+	.home-feast-detail-char-images .item {
+  	display: block;
+  	float: left;
+ 	width: 350px;
+ 	 height: 350px;
+  	margin: 15px;
+  	background-position: 50% 50%;
+ 	 background-size: cover;
+  	/* -webkit-box-shadow: 0 0 10px #000; */
+  	/* box-shadow: 0 0 10px #000; */
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- markdown end -->
@@ -104,19 +201,20 @@
 
 <p>2、右边料理活动的时间、价格、预订人员文字需要高亮</p>
 
-<pre><code>       .home-feast-front-meta, .home-feast-front-reserTip {
+<pre><code>.home-feast-front-meta, .home-feast-front-reserTip {
 margin-bottom: 5px;
 font-size: 14px;
 color: #883a36;
 } 
 </code></pre>
 
-<p><span class="loading">upload image now!</span>
-<img src="http://ww1.sinaimg.cn/large/82a9ab14gw1eruhub09xtj20pu091q6y.jpg" alt="" title=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/82a9ab14gw1eruhub09xtj20pu091q6y.jpg" alt="" title=""></p>
 
-<h2 id="">首页展开修改</h2>
+<h2 id="">首页展开详细修改</h2>
 
-<p>料理活动的介绍文字大小为16px，间距为2px </p>
+<p>1、料理活动的介绍文字大小为16px，间距为2px ，这里 width 最好设置为760px，与下面最宽的图片展示区域对齐</p>
+
+<p><img src="http://sunnist.github.io/img/Snip20150506_5.png" alt="" title=""></p>
 
 <pre><code>  .home-feast-detail-host p {
    font-size: 16px;
@@ -124,7 +222,8 @@ color: #883a36;
    }
 </code></pre>
 
-<p>去掉料理人头像的阴影，减少上下 margin 值</p>
+<p>2、去掉料理人头像的阴影，减少上下 margin 值 <br>
+ <img src="http://sunnist.github.io/img/Snip20150506_6.png" alt="" title=""></p>
 
 <pre><code>.home-feast-detail-host .avatar {
  width: 96px;
@@ -136,7 +235,27 @@ color: #883a36;
 }
 </code></pre>
 
-<p>目前每个模块的标题是 h2，希望视觉效果是18px、加粗，至于这个h2设置为 18px 可能是不符合规范的</p>
+<p>3、 减少料理人名的 margin-bottom 值</p>
+
+<p><img src="http://sunnist.github.io/img/Snip20150506_7.png" alt="" title=""></p>
+
+<pre><code> .home-feast-detail-host h2 {
+  margin-bottom: 15px;
+ font-weight: 500;
+}
+</code></pre>
+
+<p>4、减少分割线的上下 margin 值</p>
+
+<p><img src="http://sunnist.github.io/img/Snip20150506_8.png" alt="" title=""></p>
+
+<pre><code>.home-feast-detail .divider {
+ margin-top: 30px;
+ margin-bottom: 30px;
+}
+</code></pre>
+
+<p>5、目前料理人、每个模块的标题是 h2，希望视觉效果是18px（标题加粗），至于这个h2设置为 18px 可能是不符合规范的</p>
 
 <pre><code>  h2 {
   font-size: 18px;
@@ -145,15 +264,49 @@ color: #883a36;
  }
 </code></pre>
 
-<p>减少料理人名的 margin-bottom 值</p>
+<p>6、减少每块内容标题的 margin-bottom </p>
 
-<pre><code> .home-feast-detail-host h2 {
+<p><img src="http://ww3.sinaimg.cn/large/82a9ab14gw1eruii1agkjj204t020gle.jpg" alt="" title=""></p>
+
+<pre><code>.home-feast-detail-sub-section .home-feast-detail-sub-title {
   margin-bottom: 15px;
- font-weight: 500;
+  line-height: 1.2;
 }
 </code></pre>
 
-<p><img src="http://ww4.sinaimg.cn/large/82a9ab14gw1eruhzao08pj20nc07xwf3.jpg" alt="" title=""></p>
+<p>7、减少每块内容主题的 margin-bottom</p>
+
+<pre><code>.home-feast-detail-sub-section {
+  margin-bottom: 30px;
+}   
+</code></pre>
+
+<p>8、菜单字体大小为16px，这里后面的特色文字也是16px</p>
+
+<p><img src="http://ww2.sinaimg.cn/large/82a9ab14gw1eruij4w9irj206d0ed0t4.jpg" alt="" title=""></p>
+
+<pre><code>.home-feast-detail-menu-item {
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+</code></pre>
+
+<p>9、去掉特色图片的阴影</p>
+
+<p><img src="http://ww2.sinaimg.cn/large/82a9ab14gw1eruim0g61lj20f80d7tc6.jpg" alt="" title=""></p>
+
+<pre><code>.home-feast-detail-char-images .item {
+  display: block;
+  float: left;
+ width: 350px;
+  height: 350px;
+  margin: 15px;
+  background-position: 50% 50%;
+  background-size: cover;
+  /* -webkit-box-shadow: 0 0 10px #000; */
+  /* box-shadow: 0 0 10px #000; */
+}
+</code></pre>
 <!-- content end -->
 </div>
 <br>
